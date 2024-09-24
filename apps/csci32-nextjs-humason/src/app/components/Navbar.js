@@ -8,8 +8,8 @@ const menuItems = [
     href: '/week1-page',
   },
   {
-    title: 'TBD',
-    href: '#',
+    title: 'Inputs',
+    href: '/input',
   },
   {
     title: 'TBD',

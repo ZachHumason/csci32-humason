@@ -12,8 +12,10 @@
     "./styles.css": "./dist/index.css",
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
-    "./size": "./src/size.tsx",
-    "./variant": "./src/variant.tsx",
+    "./size": "./src/size.ts",
+    "./tokens": "./src/tokens.ts",
+    "./input": "./src/input.tsx",
+    "./variant": "./src/variant.ts",
     "./code": "./src/code.tsx"
   },
   "scripts": {
