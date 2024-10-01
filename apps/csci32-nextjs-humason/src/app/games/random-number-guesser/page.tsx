@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import RandomNumberGame from './random-number-game'
 import RandomNumberGameMenu from './random-number-game-menu'
-import { getRandomInt } from '@repo/math/getRandomInt'
 import Navbar from '../../components/Navbar'
+import { getRandomInt } from '@repo/math/getRandomInt'
 
 export interface StartGameProps {
   min: number
