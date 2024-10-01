@@ -12,12 +12,8 @@ const menuItems = [
     href: '/input',
   },
   {
-    title: 'TBD',
-    href: '#',
-  },
-  {
-    title: 'TBD',
-    href: '#',
+    title: 'RNG',
+    href: '/games/random-number-guesser',
   },
 ]
 
