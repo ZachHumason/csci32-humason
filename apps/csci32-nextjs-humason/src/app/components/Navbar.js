@@ -8,16 +8,12 @@ const menuItems = [
     href: '/week1-page',
   },
   {
-    title: 'TBD',
-    href: '#',
+    title: 'Inputs',
+    href: '/input',
   },
   {
-    title: 'TBD',
-    href: '#',
-  },
-  {
-    title: 'TBD',
-    href: '#',
+    title: 'RNG',
+    href: '/games/random-number-guesser',
   },
 ]
 
