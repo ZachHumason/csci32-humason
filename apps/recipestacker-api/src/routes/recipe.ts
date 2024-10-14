@@ -43,7 +43,6 @@ export const RecipeNotFoundType = Type.Object({
 const recipe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.withTypeProvider<TypeBoxTypeProvider>().get('/recipes', {
     schema: {
-      schema: {
         tags: {'Endpoint: Get all recipes'},
         description: 'Endpoiont to get all recipes',
         response: {
@@ -51,7 +50,6 @@ const recipe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
           404: RecipeNotFoundType,
         },
       },
-    },
   },
   async function (request: any, reply) {
     return fastify.recipeService.finyManyRecipe({
@@ -63,11 +61,25 @@ const recipe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     })
   },
 )
+fastify.withTypeProvider<TypeBoxTypeProvider>().get('/recipes/:id', {
+  schema: {
+    tags: ['Endpoint: Get one recipe'],
+    description: 'Endpoint to get one recipe',
+    response: {
+      200: RecipeType,
+      404: RecipeNotFoundType,
+    }
+  }
+}, async function (request: any, reply) {
+return fastify.recipeService.findOneRecipe({
+  recipe_id: request.params.id,
+})
+})
   fastify.withTypeProvider<TypeBoxTypeProvider>().post(
     '/recipes',
     {
       schema: {
-        tags: 'Endpoint: Create a recipe',
+        tags: ['Endpoint: Create a recipe'],
         description: 'Endpoint to create a recipe',
         body: CreateRecipeTypeboxType,
         response: {
