@@ -54,18 +54,17 @@ const recipe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         response: {
           200: Type.Array(RecipeType),
           404: RecipeNotFoundType,
-        },
-      },
-  },
-  async function (request: any, reply) {
-    return fastify.recipeService.finyManyRecipe({
+        }
+      }
+  }, async function (request: any, reply) {
+    return fastify.recipeService.findManyRecipes({
       name: request.query.name,
       sortColumn: request.query.sortColumn,
       sortOrder: request.query.sortOrder,
       take: request.query.take,
       skip: request.query.skip,
     })
-  },
+  }
 )
 fastify.withTypeProvider<TypeBoxTypeProvider>().put('/recipes/:id', {
   schema: {

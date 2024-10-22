@@ -137,58 +137,6 @@ export class RecipeService {
         },
       },
     })
-    // const updatedRecipe = await this.prisma.recipe.update({
-    //   where: {
-    //     recipe_id,
-    //   },
-    //   data: {
-    //     ...rest,
-    //     user: {
-    //       connect: { user_id: spoof_user_id },
-    //     },
-    //     ingredient_measurements: {
-    //       upsert: ingredient_measurements?.map(
-    //         ({ ingredient_id, quantity, unit, ingredient_name, ingredient_description }) => ({
-    //           where: {
-    //             ingredient_id_recipe_id: {
-    //               ingredient_id,
-    //               recipe_id,
-    //             },
-    //           },
-    //           update: {
-    //             ingredient: ingredient_id
-    //               ? {
-    //                   connect: {
-    //                     ingredient_id,
-    //                   },
-    //                 }
-    //               : {
-    //                   create: {
-    //                     name: ingredient_name,
-    //                     description: ingredient_description,
-    //                   },
-    //                 },
-    //             quantity,
-    //             unit,
-    //           },
-    //           create: {
-    //             ingredient: {
-    //               connectOrCreate: {
-    //                 where: { ingredient_id },
-    //                 create: {
-    //                   name: ingredient_name,
-    //                   description: ingredient_description,
-    //                 },
-    //               },
-    //             },
-    //             unit,
-    //             quantity,
-    //           },
-    //         }),
-    //       ),
-    //     },
-    //   },
-    // })
     return updatedRecipe
   }
 
