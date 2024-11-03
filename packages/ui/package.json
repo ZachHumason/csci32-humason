@@ -13,10 +13,17 @@
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
     "./size": "./src/size.ts",
-    "./tokens": "./src/tokens.ts",
-    "./input": "./src/input.tsx",
     "./variant": "./src/variant.ts",
-    "./code": "./src/code.tsx"
+    "./code": "./src/code.tsx",
+    "./input": "./src/input.tsx",
+    "./flex": "./src/flex.tsx",
+    "./field": "./src/field.tsx",
+    "./fieldGroup": "./src/fieldGroup.tsx",
+    "./header": "./src/header.tsx",
+    "./label": "./src/label.tsx",
+    "./wrapper": "./src/wrapper.tsx",
+    "./tag": "./src/tag.tsx",
+    "./tokens": "./src/tokens.ts"
   },
   "scripts": {
     "build": "tailwindcss -i ./src/styles.css -o ./dist/index.css",
