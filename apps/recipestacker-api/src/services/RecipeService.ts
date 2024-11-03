@@ -92,7 +92,7 @@ export class RecipeService {
 
   async updateOneRecipe(props: UpdateOneRecipeProps) {
     this.logger.info({ props }, 'updateOneRecipe')
-    const spoof_user_id = 'cm28mefxd0000v2zpsyg9fxtx'
+    const { user_id } = await this.prisma.user.findFirstOrThrow()
     const { recipe_id, ingredient_measurements, ...rest } = props
     const updatedRecipe = await this.prisma.recipe.update({
       where: {
@@ -163,7 +163,7 @@ export class RecipeService {
 
   async createOneRecipe(props: CreateOneRecipeProps) {
     const { name, description, ingredient_measurements } = props
-    const spoof_user_id = 'cm28mefxd0000v2zpsyg9fxtx'
+    const { user_id } = await this.prisma.user.findFirstOrThrow()
     const recipe = await this.prisma.recipe.create({
       data: {
         user: {
