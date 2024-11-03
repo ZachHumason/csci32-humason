@@ -101,7 +101,7 @@ export class RecipeService {
       data: {
         ...rest,
         user: {
-          connect: { user_id: spoof_user_id },
+          connect: { user_id: user_id },
         },
         ingredient_measurements: {
           upsert: ingredient_measurements?.map(
@@ -168,7 +168,7 @@ export class RecipeService {
       data: {
         user: {
           connect: {
-            user_id: spoof_user_id,
+            user_id: user_id,
           },
         },
         name,
