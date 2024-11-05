@@ -3,7 +3,7 @@
 import { Button } from '@repo/ui/button'
 import { GuessingGameEngineProps } from './page'
 import { useState } from 'react'
-import Input from '@repo/ui/input'
+import { Input } from '@repo/ui/input'
 
 export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount }: GuessingGameEngineProps) {
   const [guessCount, setGuessCount] = useState(0)

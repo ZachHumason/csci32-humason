@@ -1,3 +1,5 @@
+import { RecipeContext } from '@/context/RecipeContext'
+import { CreateRecipeProps, createRecipe } from '@/hooks/useRecipes'
 import { Button } from '@repo/ui/button'
 import { Field } from '@repo/ui/field'
 import { FieldGroup } from '@repo/ui/fieldGroup'
@@ -6,9 +8,10 @@ import { Header } from '@repo/ui/header'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
 import { Variant } from '@repo/ui/variant'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 export function RecipeForm() {
+  const { setShowRecipeForm } = useContext(RecipeContext)
   const [recipeFormData, setRecipeFormData] = useState({ name: '', description: '' })
   const [ingredientMeasurements, setIngredientMeasurements] = useState([
     {
@@ -21,10 +24,49 @@ export function RecipeForm() {
     },
   ])
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const data = new FormData(e.currentTarget)
+
+    const recipeName = data.get('recipe-name') as string
+    const recipeDescription = data.get('recipe-description') as string
+    const ingredient_measurements = []
+    for (const key of data.keys()) {
+      if (key.includes('ingredient-name')) {
+        const ingredient_name = data.get(key) as string
+        const unit = data.get(key.replace('ingredient-name', 'ingredient-unit')) as string
+        const quantity = Number(data.get(key.replace('ingredient-name', 'ingredient-quanity')))
+        if (!ingredient_name || !unit || !quantity) {
+          continue
+        }
+        ingredient_measurements.push({
+          ingredient_name,
+          unit,
+          quantity,
+        })
+      }
+    }
+    if (typeof recipeName !== 'string' || typeof recipeDescription !== 'string') {
+      return alert('Please fill out all fields')
+    }
+    if (ingredient_measurements.length === 0) {
+      return alert('Please add at least one ingredient')
+    }
+    const recipeData: CreateRecipeProps = {
+      name: recipeName,
+      description: recipeDescription,
+      ingredient_measurements,
+    }
+    await createRecipe(recipeData)
+    setRecipeFormData({ name: '', description: '' })
+    setShowRecipeForm(false)
+    alert(`Your recipe ${recipeName} has been created!`)
+  }
+
   return (
     <>
       <Header variant="h2">Create Recipes</Header>
-      <form className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <FieldGroup>
           <Field>
             <Label htmlFor="recipe_name">Recipe name</Label>
@@ -75,17 +117,14 @@ export function RecipeForm() {
                 value={ingredient.name}
                 onChange={(newIngredientName) => {
                   const newIngredientMeasurements = [
-                    // take the ingredients before the current index
                     ...ingredientMeasurements.slice(0, index),
-                    // update the ingredient at the current index
                     {
                       ...ingredientMeasurements[index],
                       ingredient: {
-                        ...ingredientMeasurements[index].ingredient,
+                        ...ingredientMeasurements[index]?.ingredient,
                         name: newIngredientName,
                       },
                     },
-                    // take the ingredients after the current index
                     ...ingredientMeasurements.slice(index + 1),
                   ]
                   setIngredientMeasurements(newIngredientMeasurements)
@@ -155,7 +194,7 @@ export function RecipeForm() {
           >
             Add another ingredient
           </Button>
-          <Button>Submit</Button>
+          <Button type="submit">Submit</Button>
         </Flex>
       </form>
     </>

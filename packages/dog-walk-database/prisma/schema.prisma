@@ -1,64 +1,64 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-datasource db {
-  provider = "mysql"
-  url      = env("DOG_WALK_DATABASE_URL")
-  relationMode = "prisma"
-}
+// datasource db {
+//   provider = "mysql"
+//   url      = env("DOG_WALK_DATABASE_URL")
+//   relationMode = "prisma"
+// }
 
-generator client {
-  provider = "prisma-client-js"
-}
+// generator client {
+//   provider = "prisma-client-js"
+// }
 
-model Owner {
-  owner_id      Int     @id @default(autoincrement())
-  owner_name    String
-  owner_email   String  @unique
-  dogs          Dog[]
-  walks         Walk[]  @relation("OwnerWalks")
-  reviews       Review[]
-}
+// model Owner {
+//   owner_id      Int     @id @default(autoincrement())
+//   owner_name    String
+//   owner_email   String  @unique
+//   dogs          Dog[]
+//   walks         Walk[]  @relation("OwnerWalks")
+//   reviews       Review[]
+// }
 
-model Walker {
-  walker_id      Int     @id @default(autoincrement())
-  walker_name    String
-  walker_email   String  @unique
-  walks          Walk[]  @relation("WalkerWalks")
-  reviews        Review[]
-}
+// model Walker {
+//   walker_id      Int     @id @default(autoincrement())
+//   walker_name    String
+//   walker_email   String  @unique
+//   walks          Walk[]  @relation("WalkerWalks")
+//   reviews        Review[]
+// }
 
-model Dog {
-  dog_id    Int     @id @default(autoincrement())
-  dog_name  String
-  breed     String
-  age       Int
-  ownerId   Int
-  owner     Owner   @relation(fields: [ownerId], references: [owner_id])
-  walks     Walk[]
-}
+// model Dog {
+//   dog_id    Int     @id @default(autoincrement())
+//   dog_name  String
+//   breed     String
+//   age       Int
+//   ownerId   Int
+//   owner     Owner   @relation(fields: [ownerId], references: [owner_id])
+//   walks     Walk[]
+// }
 
-model Walk {
-  walk_id   Int      @id @default(autoincrement())
-  date      DateTime
-  duration  Int
-  dogId     Int
-  walkerId  Int
-  ownerId   Int
-  dog       Dog      @relation(fields: [dogId], references: [dog_id])
-  walker    Walker   @relation("WalkerWalks", fields: [walkerId], references: [walker_id])
-  owner     Owner    @relation("OwnerWalks", fields: [ownerId], references: [owner_id])
-  reviews   Review[]
-}
+// model Walk {
+//   walk_id   Int      @id @default(autoincrement())
+//   date      DateTime
+//   duration  Int
+//   dogId     Int
+//   walkerId  Int
+//   ownerId   Int
+//   dog       Dog      @relation(fields: [dogId], references: [dog_id])
+//   walker    Walker   @relation("WalkerWalks", fields: [walkerId], references: [walker_id])
+//   owner     Owner    @relation("OwnerWalks", fields: [ownerId], references: [owner_id])
+//   reviews   Review[]
+// }
 
-model Review {
-  review_id  Int      @id @default(autoincrement())
-  rating     Int
-  comment    String?
-  walkId     Int
-  walkerId   Int
-  ownerId    Int
-  walk       Walk     @relation(fields: [walkId], references: [walk_id])
-  walker     Walker   @relation(fields: [walkerId], references: [walker_id])
-  owner      Owner    @relation(fields: [ownerId], references: [owner_id])
-}
+// model Review {
+//   review_id  Int      @id @default(autoincrement())
+//   rating     Int
+//   comment    String?
+//   walkId     Int
+//   walkerId   Int
+//   ownerId    Int
+//   walk       Walk     @relation(fields: [walkId], references: [walk_id])
+//   walker     Walker   @relation(fields: [walkerId], references: [walker_id])
+//   owner      Owner    @relation(fields: [ownerId], references: [owner_id])
+// }
