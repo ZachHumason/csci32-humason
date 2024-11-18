@@ -11,7 +11,7 @@ import { Variant } from '@repo/ui/variant'
 import { useContext, useState } from 'react'
 
 export function RecipeForm() {
-  const { setShowRecipeForm } = useContext(RecipeContext)
+  const { setShowRecipeForm, mutate } = useContext(RecipeContext)
   const [recipeFormData, setRecipeFormData] = useState({ name: '', description: '' })
   const [ingredientMeasurements, setIngredientMeasurements] = useState([
     {
@@ -59,6 +59,7 @@ export function RecipeForm() {
     }
     await createRecipe(recipeData)
     setRecipeFormData({ name: '', description: '' })
+    mutate()
     setShowRecipeForm(false)
     alert(`Your recipe ${recipeName} has been created!`)
   }

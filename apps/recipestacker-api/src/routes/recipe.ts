@@ -62,6 +62,7 @@ const recipe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     async function (request: any, reply) {
       return fastify.recipeService.findManyRecipes({
         name: request.query.name,
+        ingredients: request.query.ingredients,
         sortColumn: request.query.sortColumn,
         sortOrder: request.query.sortOrder,
         take: request.query.take,

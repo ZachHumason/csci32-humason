@@ -28,7 +28,8 @@ export default function RecipeHome() {
           <RecipeForm />
         ) : (
           <>
-            <div>🚧 Searching recipes under construction 🚧</div>
+            <RecipeSearch />
+            <RecipeResults />
           </>
         )}
       </Flex>
