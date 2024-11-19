@@ -61,7 +61,7 @@ export default function RandomNumberGame({ randomNumber, endGame, maxGuessCount 
             type="number"
             placeholder="What's your guess"
             value={guess}
-            setValue={(newValue) => setGuess(Number(newValue))}
+            //setValue={(newValue) => setGuess(Number(newValue))}
           />
           <div>{feedback}</div>
           <div>{guessCount} Attempt(s)</div>

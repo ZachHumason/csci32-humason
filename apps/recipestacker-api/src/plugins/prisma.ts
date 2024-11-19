@@ -1,5 +1,5 @@
 import fp from 'fastify-plugin'
-import { Prisma, PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 export const FP_PRISMA = 'prisma'
 
