@@ -6,6 +6,8 @@ import { useContext } from 'react'
 import { Button } from '@repo/ui/button'
 import { Variant } from '@repo/ui/variant'
 import { Header } from '@repo/ui/header'
+import RecipeResults from './RecipeResults'
+import RecipeSearch from './RecipeSearch'
 
 export default function RecipeHome() {
   const { showRecipeForm, setShowRecipeForm } = useContext(RecipeContext)

@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "module": "dist/app.js",
   "main": "app.ts",
+  "type": "module",
   "directories": {
     "test": "test"
   },
