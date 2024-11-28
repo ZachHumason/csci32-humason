@@ -10,7 +10,7 @@ export type Ingredient = {
 export type IngredientMeasurement = {
   ingredient: Ingredient
   unit: string
-  quantity: string
+  quantity: number
 }
 
 export type RecipeType = {

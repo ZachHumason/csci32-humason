@@ -2,9 +2,9 @@
   "name": "recipestacker-api",
   "description": "This project was bootstrapped with Fastify-CLI.",
   "version": "1.0.0",
+  "type": "module",
   "module": "dist/app.js",
   "main": "app.ts",
-  "type": "module",
   "directories": {
     "test": "test"
   },

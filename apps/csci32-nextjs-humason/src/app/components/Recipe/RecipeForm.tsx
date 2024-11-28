@@ -1,4 +1,4 @@
-import { RecipeContext } from '@/context/RecipeContext'
+import { IngredientMeasurement, RecipeContext } from '@/context/RecipeContext'
 import { CreateRecipeProps, createRecipe } from '@/hooks/useRecipes'
 import { Button } from '@repo/ui/button'
 import { Field } from '@repo/ui/field'
@@ -30,7 +30,8 @@ export function RecipeForm() {
 
     const recipeName = data.get('recipe-name') as string
     const recipeDescription = data.get('recipe-description') as string
-    const ingredient_measurements = []
+    const ingredient_measurements: IngredientMeasurement[] = [] // problem here but added : IngredientMeasurement[]
+
     for (const key of data.keys()) {
       if (key.includes('ingredient-name')) {
         const ingredient_name = data.get(key) as string
@@ -122,7 +123,7 @@ export function RecipeForm() {
                     {
                       ...ingredientMeasurements[index],
                       ingredient: {
-                        ...ingredientMeasurements[index]?.ingredient,
+                        ...ingredientMeasurements[index]!.ingredient, // added the "!" (exclamation mark) to fix an error, maybe wrong
                         name: newIngredientName,
                       },
                     },

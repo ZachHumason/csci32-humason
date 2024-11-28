@@ -15,7 +15,6 @@ export default function RecipeSearch() {
       <Flex className="flex-col gap-y-2">
         <Field>
           <Label>Ingredients</Label>
-          // setIngredientQuery onChange // setIngredients onEnter
           <Input
             name="ingredient-search"
             id="ingredient-search"
@@ -27,7 +26,6 @@ export default function RecipeSearch() {
         <IngredientList />
         <Field>
           <Label>Recipe name</Label>
-          // use setRecipeNameQuery onEnter
           <Input
             name="recipe-name-search"
             id="recipe-name-search"
